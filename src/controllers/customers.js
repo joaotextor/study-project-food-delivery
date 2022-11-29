@@ -34,7 +34,7 @@ const remove = async (req, res) => {
 
     const remove = await CustomersModels.deleteOne({ _id: id})
 
-    const message = remove.deletedCount === 1 ? 'success' : 'error'
+    const message = remove.deletedCount === 1 ? 'successfully deleted' : 'error deleting customer'
 
     res.send({
         message
