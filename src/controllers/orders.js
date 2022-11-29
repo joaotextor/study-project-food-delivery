@@ -31,8 +31,21 @@ const post = async (req, res) => {
 
 }
 
+const remove = async (req, res) => {
+    const { id } = req.params
+
+    const remove = await OrdersModels.deleteOne({ _id: id })
+
+    const message = remove.deletedCount === 1 ? 'Order deleted successfully' : 'error deleting order'
+
+    res.send({
+        message
+    })
+}
+
 
 module.exports = {
     get,
     post,
+    remove
 }
