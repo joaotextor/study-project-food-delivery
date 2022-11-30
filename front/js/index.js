@@ -24,7 +24,7 @@ const Customer = {
     },
 
     add: async function(name, email, phone, address) {
-        let customer = await this.customerExists(email, phone)
+        let customer = await this.customer(email, phone)
         let message
         if (customer.exist) { 
             message = 'Erro: já há um cadastro com este e-mail ou telefone!'
@@ -54,7 +54,7 @@ const Customer = {
             return message
     },
 
-    customerExists: async function(email, phone) {
+    customer: async function(email, phone) {
         let exist = false
         const loggedCustomer = await fetch(`${API_URL}/customers`)
             .then(response => {
@@ -77,9 +77,13 @@ const Customer = {
         btnSubmit_submit: async function(e) {
             e.preventDefault()
 
-            const addClient = await this.add(this.$name.value, this.$email.value, this.$phone.value, this.$address.value)
+            await this.add(this.$name.value, this.$email.value, this.$phone.value, this.$address.value)
 
-            console.log(addClient)
+            const customer = await this.customer(this.$email.value, this.$phone.value)
+
+            
+
+
 
             // let customerExist = await this.customerExists(this.$email.value, this.$phone.value)
 
