@@ -26,7 +26,7 @@ const post = async (req, res) => {
     orders.save()
 
     res.send({
-        message: 'Order created successfully'
+        message: 'success'
     })
 
 }
@@ -36,7 +36,7 @@ const remove = async (req, res) => {
 
     const remove = await OrdersModels.deleteOne({ _id: id })
 
-    const message = remove.deletedCount === 1 ? 'Order successfully deleted' : 'error deleting order'
+    const message = remove.deletedCount === 1 ? 'success' : 'error'
 
     res.send({
         message

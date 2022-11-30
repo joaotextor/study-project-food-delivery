@@ -22,7 +22,7 @@ const post = async (req, res) => {
     products.save()
 
     res.send({
-        message: 'Product successfully inserted'
+        message: 'success'
     })
 }
 
@@ -31,7 +31,7 @@ const remove = async (req, res) => {
 
     const remove = await ProductsModels.deleteOne({ _id: id})
 
-    const message = remove.deletedCount === 1 ? 'successfully deleted' : 'error deleting product'
+    const message = remove.deletedCount === 1 ? 'success' : 'error'
 
     res.send({
         message

@@ -25,7 +25,7 @@ const post = async (req, res) => {
     customers.save()
 
     res.send({
-        message: 'Customer successfully inserted'
+        message: 'success'
     })
 }
 
@@ -34,7 +34,7 @@ const remove = async (req, res) => {
 
     const remove = await CustomersModels.deleteOne({ _id: id})
 
-    const message = remove.deletedCount === 1 ? 'successfully deleted' : 'error deleting customer'
+    const message = remove.deletedCount === 1 ? 'success' : 'error'
 
     res.send({
         message
