@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Solway:wght@300;400;700&display=swap');
+
+:root  {
+    --bg-white: 0 0% 100%;
+    font-size: 16px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Solway', serif;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.hidden {
+    display: none;
+}
+
+body {
+    height: 100vh;
+    background: rgb(131,58,180);
+    background: linear-gradient(137deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+    justify-content: center;
+    align-items: center;
+}
+
+.form-window {
+    padding: 2rem;
+    padding-top: .5rem;
+    border-radius: 15px;
+    background: hsl(var(--bg-white) / .15);
+    backdrop-filter: blur(30px);
+    width: 450px;
+    box-shadow:
+        0px 0.1px 2.2px rgba(0, 0, 0, 0.096),
+        0px 0.1px 5.3px rgba(0, 0, 0, 0.142),
+        0px 0.3px 10px rgba(0, 0, 0, 0.17),
+        0px 0.4px 17.9px rgba(0, 0, 0, 0.189),
+        0px 0.8px 33.4px rgba(0, 0, 0, 0.202),
+        0px 2px 80px rgba(0, 0, 0, 0.21);
+
+}
+
+
+.form-window h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-submit {
+    width: 450px;
+    margin-inline: auto;
+}
+
+.btn-submit {
+    width: 200px;
+    font-size: 1.2rem;
+    margin-inline: auto;
+    margin-top: 1.5rem;
+    padding-block: .5rem;
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: color 300ms ease, border-color 300ms ease;
+}
+
+.btn-submit:hover {
+    border-color:white;
+    color: white;
+
+}
+
+.form-submit div > label {
+    font-size: 1.5rem;
+}
+
+.form-submit div > label input {
+    float: right;
+    font-size: 1rem;
+    width: 60%;
+    margin-bottom: .5rem;
+    border-radius: 10px;
+    padding: .4rem;
+    background-color: transparent;
+}
+
+footer {
+    justify-content: center;
+    text-align: center;
+    bottom: 0;
+    margin-top: auto;
+}
