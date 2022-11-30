@@ -1,6 +1,29 @@
 import { API_URL } from './utils.js'
 
 
+const Orders = {
+    init: function() {
+        this.cacheElements()
+        // this.bindEvents()
+    },
+
+    cacheElements: function() {
+        this.$welcome = document.getElementById('bem-vindo')
+        this.$orderWindow = document.getElementById('order-window')
+        this.$orderList = document.getElementById('order-table')
+    },
+
+    orders: async function() {
+        let exist = false
+        const orderList = await fetch(`${API_URL}/orders`)
+            .then(response => response.json())
+
+        console.log(orderList)
+    }
+}
+
+// TODO: Endpoint to get orders by customer id (CUID)
+
 const Customer = {
     init: function() {
         this.cacheElements()
@@ -8,7 +31,6 @@ const Customer = {
     },
 
     cacheElements: function() {
-        //form
         this.$loginWindow = document.getElementById('login-window')
         this.$form = document.querySelector('.form-submit')
         this.$name = document.getElementById('name')
@@ -17,10 +39,7 @@ const Customer = {
         this.$address = document.getElementById('address')
         this.$btnSubmit = document.querySelector('.btn-submit')
 
-        //order list
-        this.$welcome = document.getElementById('bem-vindo')
-        this.$orderWindow = document.getElementById('order-window')
-        this.$orderList = document.getElementById('order-table')
+        
     },
 
     bindEvents: function() {
@@ -30,7 +49,7 @@ const Customer = {
 
     },
 
-    add: async function(name, email, phone, address) {
+    addCustomer: async function(name, email, phone, address) {
         let customer = await this.customer(email, phone)
         let message
         if (customer.exist) { 
@@ -86,6 +105,11 @@ const Customer = {
 
             let error = 0
 
+            this.$name.parentElement.classList.remove('error')
+            this.$name.classList.remove('error')
+            this.$email.parentElement.classList.remove('error')
+            this.$email.classList.remove('error')
+
             if (!this.$name.value) {
                 this.$name.parentElement.classList.add('error')
                 this.$name.classList.add('error')
@@ -102,20 +126,17 @@ const Customer = {
                 alert('Por favor, corrija os campos em destaque.') 
                 return
             }
-
-            this.$name.parentElement.classList.remove('error')
-            this.$name.classList.remove('error')
-            this.$email.parentElement.classList.remove('error')
-            this.$email.classList.remove('error')
             
-            await this.add(this.$name.value, this.$email.value, this.$phone.value, this.$address.value)
+            await this.addCustomer(this.$name.value, this.$email.value, this.$phone.value, this.$address.value)
 
             const customer = await this.customer(this.$email.value, this.$phone.value)
 
-            this.$welcome.innerText = `Bem vindo, ${customer.loggedCustomer[0].name}`
+            Orders.$welcome.innerText = `Bem vindo, ${customer.loggedCustomer[0].name}`
           
             this.$loginWindow.classList.add('hidden')
-            this.$orderWindow.classList.remove('hidden')
+            Orders.$orderWindow.classList.remove('hidden')
+
+            Orders.orders()
 
         }
 
@@ -123,3 +144,4 @@ const Customer = {
 }
 
 Customer.init()
+Orders.init()
