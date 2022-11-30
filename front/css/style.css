@@ -24,6 +24,11 @@
     display: none;
 }
 
+.error {
+    color: rgb(255, 151, 151);
+    border-color: rgb(255, 151, 151);
+}
+
 body {
     height: 100vh;
     background: rgb(131,58,180);
@@ -32,13 +37,17 @@ body {
     align-items: center;
 }
 
-.form-window {
+.container {
+    margin-block: auto;
+}
+
+.default-wrapper {
     padding: 2rem;
-    padding-top: .5rem;
     border-radius: 15px;
     background: hsl(var(--bg-white) / .15);
     backdrop-filter: blur(30px);
-    width: 450px;
+    min-width: 375px;
+    width: 40vw;
     box-shadow:
         0px 0.1px 2.2px rgba(0, 0, 0, 0.096),
         0px 0.1px 5.3px rgba(0, 0, 0, 0.142),
@@ -46,18 +55,25 @@ body {
         0px 0.4px 17.9px rgba(0, 0, 0, 0.189),
         0px 0.8px 33.4px rgba(0, 0, 0, 0.202),
         0px 2px 80px rgba(0, 0, 0, 0.21);
-
 }
 
-
-.form-window h2 {
+.default-wrapper h2 {
     text-align: center;
     margin-bottom: 2rem;
 }
 
 .form-submit {
-    width: 450px;
+    width: fill;
     margin-inline: auto;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+}
+
+table ul li {
+    list-style: none;
 }
 
 .btn-submit {
@@ -76,7 +92,6 @@ body {
 .btn-submit:hover {
     border-color:white;
     color: white;
-
 }
 
 .form-submit div > label {
@@ -84,18 +99,52 @@ body {
 }
 
 .form-submit div > label input {
-    float: right;
+    display: block;
     font-size: 1rem;
-    width: 60%;
+    width: 100%;
     margin-bottom: .5rem;
     border-radius: 10px;
     padding: .4rem;
     background-color: transparent;
 }
 
+/* prevents input background from changing color when using the autofill feature of some browsers (like Chrome and Opera) */
+.form-submit div > label input:-webkit-autofill,
+.form-submit div > label input:-webkit-autofill:hover,
+.form-submit div > label input:-webkit-autofill:focus,
+.form-submit div > label input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.form-submit div > label input::placeholder {
+    color: rgb(51, 51, 51);
+}
+
 footer {
     justify-content: center;
     text-align: center;
     bottom: 0;
-    margin-top: auto;
+    height: 25px;
+}
+
+footer div a:any-link {
+    text-decoration: none;
+    color: black;
+}
+
+@media (min-width: 500px) {
+    .form-submit div > label {
+        font-size: 1.5rem;
+    }
+    
+    .form-submit div > label input {
+        display: flex;
+        float: right;
+        font-size: 1rem;
+        width: 60%;
+        margin-bottom: .5rem;
+        border-radius: 10px;
+        padding: .4rem;
+        background-color: transparent;
+    }
 }

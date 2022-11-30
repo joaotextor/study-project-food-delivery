@@ -7,9 +7,9 @@
         <link href="css/style.css" rel="stylesheet">
         <script src="js/index.js" type="module" defer></script>
     </head>
-    <body class="flex">
-        <div class="container flex">
-            <div class="form-window">
+    <body class="flex-column">
+        <div class="container flex-column">
+            <div id="login-window" class="default-wrapper ">
                 <h2>Cadastro/Login</h2>
                 <form action="" class="form-submit flex-column">
                     <div>
@@ -35,11 +35,39 @@
                     <button type="submit" class="btn-submit">Cadastrar/Entrar</button>
                 </form>
             </div>
-        </div>   
+
+            <div id="order-window" class="default-wrapper hidden">
+                <p id="bem-vindo">Bem vindo</p>
+                <h2>Meus pedidos</h2>
+                <div class="order-items flex">
+                    <table id="order-table">
+                        <tr>
+                            <th>Pedido em</th>
+                            <th>Situação</th>
+                        </tr>
+                        <tr>
+                            <td>Dia X</td>
+                            <td>Em entrega</td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">Produtos</th>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <ul>
+                                    <li>Produto 1</li>
+                                    <li>Produto 2</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>  
+        <footer class="flex">
+            <div>
+                <a href="/admin">[Admin Panel]</a>
+            </div>
+        </footer> 
     </body>
-    <footer class="flex">
-        <div>
-            <a href="/admin">[Admin Panel]</a>
-        </div>
-    </footer>
     </html>
