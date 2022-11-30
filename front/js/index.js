@@ -8,12 +8,19 @@ const Customer = {
     },
 
     cacheElements: function() {
+        //form
+        this.$loginWindow = document.getElementById('login-window')
         this.$form = document.querySelector('.form-submit')
         this.$name = document.getElementById('name')
         this.$email = document.getElementById('email')
         this.$phone = document.getElementById('phone')
         this.$address = document.getElementById('address')
         this.$btnSubmit = document.querySelector('.btn-submit')
+
+        //order list
+        this.$welcome = document.getElementById('bem-vindo')
+        this.$orderWindow = document.getElementById('order-window')
+        this.$orderList = document.getElementById('order-table')
     },
 
     bindEvents: function() {
@@ -77,20 +84,38 @@ const Customer = {
         btnSubmit_submit: async function(e) {
             e.preventDefault()
 
+            let error = 0
+
+            if (!this.$name.value) {
+                this.$name.parentElement.classList.add('error')
+                this.$name.classList.add('error')
+                error = 1
+            }
+
+            if (!this.$email.value) {
+                this.$email.parentElement.classList.add('error')
+                this.$email.classList.add('error')
+                error = 1
+            }
+
+            if (error != 0) {
+                alert('Por favor, corrija os campos em destaque.') 
+                return
+            }
+
+            this.$name.parentElement.classList.remove('error')
+            this.$name.classList.remove('error')
+            this.$email.parentElement.classList.remove('error')
+            this.$email.classList.remove('error')
+            
             await this.add(this.$name.value, this.$email.value, this.$phone.value, this.$address.value)
 
             const customer = await this.customer(this.$email.value, this.$phone.value)
 
-            
-
-
-
-            // let customerExist = await this.customerExists(this.$email.value, this.$phone.value)
-
-            // const {name, phone, address} = customerExist.loggedCustomer[0]
-
-            // console.log(name)
-        
+            this.$welcome.innerText = `Bem vindo, ${customer.loggedCustomer[0].name}`
+          
+            this.$loginWindow.classList.add('hidden')
+            this.$orderWindow.classList.remove('hidden')
 
         }
 
