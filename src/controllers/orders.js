@@ -8,6 +8,14 @@ const get = async (req, res) => {
     res.send(orders)
 }
 
+const getByCuid = async (req, res) => {
+    const { id } = req.params
+    
+    const orders = await OrdersModels.find({ customerID: id})
+
+    res.send(orders)
+}
+
 const post = async (req, res) => {
     const {
         customerID,
@@ -46,6 +54,7 @@ const remove = async (req, res) => {
 
 module.exports = {
     get,
+    getByCuid,
     post,
     remove
 }
