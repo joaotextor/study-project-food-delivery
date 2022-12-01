@@ -1,5 +1,5 @@
 import { API_URL } from './utils.js'
-
+import { removeCSSClass, addCSSClass } from './common.js'
 
 const Orders = {
     init: function() {
@@ -13,16 +13,17 @@ const Orders = {
         this.$orderList = document.getElementById('order-table')
     },
 
-    orders: async function() {
-        let exist = false
-        const orderList = await fetch(`${API_URL}/orders`)
-            .then(response => response.json())
+    getByCuid: async function(cuid) {
+        return await fetch(`${API_URL}/orders/cuid/${cuid}`)
+            .then(response => { return response.json()})        
+    },
+
+    list: async function(cuid) {
+        const orderList = await this.getByCuid(cuid)
 
         console.log(orderList)
     }
 }
-
-// TODO: Endpoint to get orders by customer id (CUID)
 
 const Customer = {
     init: function() {
@@ -84,13 +85,10 @@ const Customer = {
         let exist = false
         const loggedCustomer = await fetch(`${API_URL}/customers`)
             .then(response => {
-                const customer = response.json()
+                return response.json()
                     .then(data => {
-                        let customerFiltered = data.filter(customer => customer.email === email || customer.phone == phone)
-
-                        return customerFiltered
+                        return data.filter(customer => customer.email === email || customer.phone == phone)
                 })
-                return customer
             })
 
             !loggedCustomer.length ? exist = false : exist = true
@@ -104,21 +102,21 @@ const Customer = {
             e.preventDefault()
 
             let error = 0
-
-            this.$name.parentElement.classList.remove('error')
-            this.$name.classList.remove('error')
-            this.$email.parentElement.classList.remove('error')
-            this.$email.classList.remove('error')
+            
+            removeCSSClass(this.$name.parentElement, 'error')
+            removeCSSClass(this.$name, 'error')
+            removeCSSClass(this.$email.parentElement, 'error')
+            removeCSSClass(this.$email, 'error')
 
             if (!this.$name.value) {
                 this.$name.parentElement.classList.add('error')
-                this.$name.classList.add('error')
+                addCSSClass(this.$name, 'error')
                 error = 1
             }
 
             if (!this.$email.value) {
-                this.$email.parentElement.classList.add('error')
-                this.$email.classList.add('error')
+                addCSSClass(this.$email.parentElement, 'error')
+                addCSSClass(this.$email, 'error')
                 error = 1
             }
 
@@ -132,11 +130,11 @@ const Customer = {
             const customer = await this.customer(this.$email.value, this.$phone.value)
 
             Orders.$welcome.innerText = `Bem vindo, ${customer.loggedCustomer[0].name}`
-          
-            this.$loginWindow.classList.add('hidden')
-            Orders.$orderWindow.classList.remove('hidden')
 
-            Orders.orders()
+            addCSSClass(this.$loginWindow, 'hidden')
+            removeCSSClass(Orders.$orderWindow, 'hidden')
+
+            Orders.list(customer.loggedCustomer[0]._id)
 
         }
 
