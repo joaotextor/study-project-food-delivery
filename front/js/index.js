@@ -20,8 +20,41 @@ const Orders = {
 
     list: async function(cuid) {
         const orderList = await this.getByCuid(cuid)
-
+        
         console.log(orderList)
+
+        orderList.forEach(order => {
+
+            let orderProducts = ''
+            order.products.forEach(product => {
+                orderProducts += `<li>${product}</li>`
+            })
+
+            this.$orderList.innerHTML += `
+            <tr>
+                <th>Pedido em</th>
+                <th>Situação</th>
+                <th>Ação</th>
+            </tr>
+            <tr>
+                <td>${new Date(order.creationDate).toLocaleDateString('en-GB')}</td>
+                <td>${order.status}</td>
+                <td rowspan="3"><a href="#" data-id="${order._id}">Cancelar</a></td>
+            </tr>
+            <tr>
+                <th colspan="2">Produtos</th>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <ul>
+                        ${orderProducts}
+                    </ul>
+                </td>
+            </tr>
+            <tr></tr>
+            `
+        })
+        
     }
 }
 

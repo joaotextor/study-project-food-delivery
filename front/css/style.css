@@ -72,6 +72,10 @@ table {
     text-align: center;
 }
 
+table tr:last-child {
+    height: 2rem;
+}
+
 table ul li {
     list-style: none;
 }
