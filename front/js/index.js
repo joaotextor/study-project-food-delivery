@@ -71,7 +71,7 @@ const Customer = {
         this.$email = document.getElementById('email')
         this.$phone = document.getElementById('phone')
         this.$address = document.getElementById('address')
-        this.$btnSubmit = document.querySelector('.btn-submit')
+        this.$btnSubmit = document.querySelector('#btn-submit')
 
         
     },

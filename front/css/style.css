@@ -60,6 +60,7 @@ body {
 .default-wrapper h2 {
     text-align: center;
     margin-bottom: 2rem;
+    font-size: 3rem;
 }
 
 .form-submit {
@@ -80,7 +81,7 @@ table ul li {
     list-style: none;
 }
 
-.btn-submit {
+.btn-default {
     width: 200px;
     font-size: 1.2rem;
     margin-inline: auto;
@@ -93,9 +94,14 @@ table ul li {
     transition: color 300ms ease, border-color 300ms ease;
 }
 
-.btn-submit:hover {
+.btn-default:hover {
     border-color:white;
     color: white;
+}
+
+.btn-add-order {
+    margin-top: 0;
+    margin-bottom: 2rem;
 }
 
 .form-submit div > label {
