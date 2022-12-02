@@ -1,5 +1,5 @@
 import { API_URL } from './utils.js'
-import { removeCSSClass, addCSSClass } from './common.js'
+import { removeCSSClass, addCSSClass, bindModal } from './common.js'
 
 const Main = {
     loggedCustomer: []
@@ -15,13 +15,13 @@ const Orders = {
         this.$welcome = document.getElementById('bem-vindo')
         this.$orderWindow = document.getElementById('order-window')
         this.$orderList = document.querySelector('.order-items')
-        this.$btnInsert = document.querySelector('.btn-add-order')
         this.$btnReload = document.getElementById('btn-reload')
     },
 
     bindEvents: function() {
         const self = this
         this.$btnReload.onclick = this.Events.btnReload_click.bind(self)
+        bindModal("order-modal","btn-order-insert", "btn-close")
     },
 
     getByCuid: async function(cuid) {

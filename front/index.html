@@ -9,6 +9,17 @@
     </head>
     <body class="flex-column">
         <div class="container flex-column">
+            <div id="order-modal" class="modal">
+                <div class="modal-content">
+                    <span id="btn-close" class="close">&times;</span>
+                    <p>Some text in the Modal..</p>
+                    <p>Some text in the Modal..</p>
+                    <p>Some text in the Modal..</p>
+                    <p>Some text in the Modal..</p>
+                    <p>Some text in the Modal..</p>
+                  </div>
+            </div>
+
             <div id="login-window" class="default-wrapper ">
                 <h2>Cadastro/Login</h2>
                 <form action="" class="form-submit flex-column">
@@ -41,13 +52,12 @@
                 <h2>Meus pedidos</h2>
 
                 <div class="btn-wrapper flex">
-                    <button class="btn-default btn-add-order">
-                        Adicionar pedido
+                    <button id="btn-order-insert" class="btn-default btn-add-order">
+                        Fazer pedido
                     </button>
                     <button id="btn-reload" class="btn-default">
                         <img class="reload-img" src="./images/reload-icon.svg" alt="reload icon"> Atualizar Lista
                     </button>
-                    
                 </div>
                 <div class="order-items flex-column">
                 </div>
