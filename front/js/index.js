@@ -1,15 +1,27 @@
 import { API_URL } from './utils.js'
 import { removeCSSClass, addCSSClass } from './common.js'
 
+const Main = {
+    loggedCustomer: []
+}
+
 const Orders = {
     init: function() {
         this.cacheElements()
+        this.bindEvents()
     },
 
     cacheElements: function() {
         this.$welcome = document.getElementById('bem-vindo')
         this.$orderWindow = document.getElementById('order-window')
         this.$orderList = document.querySelector('.order-items')
+        this.$btnInsert = document.querySelector('.btn-add-order')
+        this.$btnReload = document.getElementById('btn-reload')
+    },
+
+    bindEvents: function() {
+        const self = this
+        this.$btnReload.onclick = this.Events.btnReload_click.bind(self)
     },
 
     getByCuid: async function(cuid) {
@@ -19,12 +31,12 @@ const Orders = {
 
     bindBtnRemoveOnClick: async function() {
         this.$btnRemove.forEach(button => {
-            button.onclick = function(e) {
+            button.onclick = async function(e) {
                 e.preventDefault()
                 const id = this.dataset.id
-                //Orders.remove(id)
-                Orders.getByCuid(Customer.customer.loggedCustomer[0]._id)
-                Orders.list(Customer.customer.loggedCustomer[0]._id)
+                await Orders.remove(id)
+                Orders.$orderList.innerHTML = ''
+                Orders.list(Main.loggedCustomer[0]._id)
             }
         })
     },
@@ -76,6 +88,13 @@ const Orders = {
             method: 'DELETE'
         })
     },
+
+    Events: {
+        btnReload_click: function() {
+            Orders.$orderList.innerHTML = ''
+            Orders.list(Main.loggedCustomer[0]._id)
+        }
+    }
 }
 
 const Customer = {
@@ -136,7 +155,7 @@ const Customer = {
 
     customer: async function(email, phone) {
         let exist = false
-        const loggedCustomer = await fetch(`${API_URL}/customers`)
+        let loggedCustomer = await fetch(`${API_URL}/customers`)
             .then(response => {
                 return response.json()
                     .then(data => {
@@ -145,6 +164,8 @@ const Customer = {
             })
 
             !loggedCustomer.length ? exist = false : exist = true
+
+            Main.loggedCustomer = loggedCustomer
 
             return { exist, loggedCustomer }
     },
@@ -182,7 +203,7 @@ const Customer = {
 
             const customer = await this.customer(this.$email.value, this.$phone.value)
 
-            Orders.$welcome.innerText = `Bem vindo, ${customer.loggedCustomer[0].name}`
+            Orders.$welcome.innerText = `Bem vindo, ${Main.loggedCustomer[0].name}`
 
             addCSSClass(this.$loginWindow, 'hidden')
             removeCSSClass(Orders.$orderWindow, 'hidden')

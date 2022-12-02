@@ -97,9 +97,30 @@ table ul li {
     color: white;
 }
 
+.btn-default:hover img {
+    filter: invert(100%) sepia(100%) saturate(1%) hue-rotate(154deg) brightness(108%) contrast(101%);
+}
+
+.btn-wrapper {
+    margin-bottom: 2rem;
+    justify-content: space-around;
+}
+
 .btn-add-order {
     margin-top: 0;
-    margin-bottom: 2rem;
+    margin-inline: 0;
+}
+
+#btn-reload {
+    margin-inline: 0;
+    margin-top: 0;
+}
+
+#btn-reload img {
+    width: 30px;
+    cursor: pointer;
+    vertical-align: middle;
+    transition: filter 300ms ease;
 }
 
 .form-submit div > label {
