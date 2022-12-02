@@ -4,13 +4,12 @@ import { removeCSSClass, addCSSClass } from './common.js'
 const Orders = {
     init: function() {
         this.cacheElements()
-        // this.bindEvents()
     },
 
     cacheElements: function() {
         this.$welcome = document.getElementById('bem-vindo')
         this.$orderWindow = document.getElementById('order-window')
-        this.$orderList = document.getElementById('order-table')
+        this.$orderList = document.querySelector('.order-items')
     },
 
     getByCuid: async function(cuid) {
@@ -18,11 +17,21 @@ const Orders = {
             .then(response => { return response.json()})        
     },
 
+    bindBtnRemoveOnClick: async function() {
+        this.$btnRemove.forEach(button => {
+            button.onclick = function(e) {
+                e.preventDefault()
+                const id = this.dataset.id
+                //Orders.remove(id)
+                Orders.getByCuid(Customer.customer.loggedCustomer[0]._id)
+                Orders.list(Customer.customer.loggedCustomer[0]._id)
+            }
+        })
+    },
+
     list: async function(cuid) {
         const orderList = await this.getByCuid(cuid)
         
-        console.log(orderList)
-
         orderList.forEach(order => {
 
             let orderProducts = ''
@@ -31,6 +40,7 @@ const Orders = {
             })
 
             this.$orderList.innerHTML += `
+            <table>
             <tr>
                 <th>Pedido em</th>
                 <th>Situação</th>
@@ -39,7 +49,7 @@ const Orders = {
             <tr>
                 <td>${new Date(order.creationDate).toLocaleDateString('en-GB')}</td>
                 <td>${order.status}</td>
-                <td rowspan="3"><a href="#" data-id="${order._id}">Cancelar</a></td>
+                <td rowspan="3"><a class="btn-remove" href="#" data-id="${order._id}">Cancelar</a></td>
             </tr>
             <tr>
                 <th colspan="2">Produtos</th>
@@ -51,15 +61,25 @@ const Orders = {
                     </ul>
                 </td>
             </tr>
-            <tr></tr>
+            </table>
             `
+
         })
+
+        this.$btnRemove = document.querySelectorAll('.btn-remove')
+        this.bindBtnRemoveOnClick()
         
-    }
+    },
+
+    remove: async function(id) {
+        await fetch(`${API_URL}/orders/${id}`, {
+            method: 'DELETE'
+        })
+    },
 }
 
 const Customer = {
-    init: function() {
+        init: function() {
         this.cacheElements()
         this.bindEvents()
     },
@@ -168,11 +188,28 @@ const Customer = {
             removeCSSClass(Orders.$orderWindow, 'hidden')
 
             Orders.list(customer.loggedCustomer[0]._id)
-
         }
 
     }
 }
 
+const Products = {
+    products: [],
+
+    init: function() {
+        this.list()
+    },
+
+    bindElements: function() {
+
+    },
+
+    list: async function() {
+        this.products = await fetch(`${API_URL}/products`)
+        .then(response => { return response.json()})
+      }
+}
+
 Customer.init()
 Orders.init()
+Products.init()
