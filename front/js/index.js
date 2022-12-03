@@ -24,6 +24,7 @@ const Orders = {
     bindEvents: function() {
         const self = this
         this.$btnReload.onclick = this.Events.btnReload_click.bind(self)
+        this.$btnConfirmOrder.onclick = this.Events.btnRegister_click.bind(self)
     },
 
     getByCuid: async function(cuid) {
@@ -118,6 +119,41 @@ const Orders = {
     },
 
     new: async function(id) {
+            // TODO: 1. querySelectorALl in product-card 
+            // TODO: 2. Loop product-cards, if data-pressed true, extract data-id and push to an array
+            // TODO: 3. post API orders with array of products
+            const customerID = Main.loggedCustomer[0]._id
+            let products = []
+            const creationDate = new Date().toLocaleDateString('en-GB')
+            this.$btnProductCard.forEach(productCard => {
+                if (productCard.dataset.pressed == 'true') {
+                    products.push(productCard.dataset.id)
+                }
+                
+            })
+
+            await fetch(`${API_URL}/orders`, {
+                method: 'POST',	
+                headers: { 
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    customerID,
+                    products,
+                    creationDate,
+                    status: 'Pendente'
+                })
+            }).then(response => {
+                response.json().then(data => {
+                    if (data.message === 'success') {
+                        this.$modal.classList.add('hidden')
+                        this.$modal.classList.remove('d-block')
+                        Orders.$orderList.innerHTML = ''
+                        Orders.list(Main.loggedCustomer[0]._id)
+
+                    }
+                })
+            })
 
     },
 
@@ -142,9 +178,7 @@ const Orders = {
         },
 
         btnRegister_click: function() {
-            // TODO: 1. querySelectorALl in product-card 
-            // TODO: 2. Loop product-cards, if data-pressed true, extract data-id and push to an array
-            // TODO: 3. post API orders with array of products
+            this.new()
         }
     }
 }
