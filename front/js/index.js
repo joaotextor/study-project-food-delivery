@@ -16,12 +16,15 @@ const Orders = {
         this.$orderWindow = document.getElementById('order-window')
         this.$orderList = document.querySelector('.order-items')
         this.$btnReload = document.getElementById('btn-reload')
+        this.$btnConfirmOrder = document.querySelector('.btn-confirm-order')
+        this.$btnProductCard = document.querySelectorAll('.product-card')
+        this.$productsWrapper = document.querySelector('#products-wrapper')
+        this.$modal = bindModal("order-modal","btn-order-insert", "btn-close")
     },
 
     bindEvents: function() {
         const self = this
         this.$btnReload.onclick = this.Events.btnReload_click.bind(self)
-        bindModal("order-modal","btn-order-insert", "btn-close")
     },
 
     getByCuid: async function(cuid) {
@@ -39,6 +42,15 @@ const Orders = {
                 Orders.list(Main.loggedCustomer[0]._id)
             }
         })
+    },
+
+    populateProductWrapper: function() {
+        let productsHtml
+        console.log(Products.products)
+    },
+
+    bindProductCardPressed: function() {
+
     },
 
     list: async function(cuid) {
@@ -83,6 +95,10 @@ const Orders = {
         
     },
 
+    new: async function(id) {
+
+    },
+
     remove: async function(id) {
         await fetch(`${API_URL}/orders/${id}`, {
             method: 'DELETE'
@@ -93,6 +109,12 @@ const Orders = {
         btnReload_click: function() {
             Orders.$orderList.innerHTML = ''
             Orders.list(Main.loggedCustomer[0]._id)
+        },
+
+        btnRegister_click: function() {
+            // TODO: 1. querySelectorALl in product-card 
+            // TODO: 2. Loop product-cards, if data-pressed true, extract data-id and push to an array
+            // TODO: 3. post API orders with array of products
         }
     }
 }
@@ -217,18 +239,19 @@ const Customer = {
 const Products = {
     products: [],
 
-    init: function() {
-        this.list()
+    init: async function() {
+        await this.list()
+        this.cacheElements()
     },
 
-    bindElements: function() {
+    cacheElements: function() {
 
     },
 
     list: async function() {
         this.products = await fetch(`${API_URL}/products`)
         .then(response => { return response.json()})
-      }
+    }
 }
 
 Customer.init()

@@ -12,17 +12,29 @@ function bindModal(name, btnOpen, btnClose) {
     const close = document.getElementById(btnClose)
 
     open.onclick = () => {
-        modal.style.display = "block"
+        modal.classList.add('d-block')
+        modal.classList.remove('hidden')
     }
 
     close.onclick = () => {
-        modal.style.display = "none"
+        modal.classList.add('hidden')
+        modal.classList.remove('d-block')
     }
 
     window.onclick = (event) => {
         event.target == modal ? modal.style.display = "none" : null
     }
 
+    modalExecute(modal)
+
+    return modal
+}
+
+function modalExecute(modalName) { 
+        switch (modalName.id) {
+            case 'order-modal':
+                console.log(`${modalName.id} loaded`)
+        }
 }
 
 export { removeCSSClass, addCSSClass, bindModal }
