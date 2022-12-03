@@ -44,13 +44,35 @@ const Orders = {
         })
     },
 
-    populateProductWrapper: function() {
-        let productsHtml
-        console.log(Products.products)
+    populateProductWrapper: async function() {
+        await Products.list()
+        let productsHtml = ''
+
+        Products.products.forEach(product => {
+            const price = product.price.toString().split('.')
+            let cents = ''
+
+            if (price[1]) { 
+                price[1].length === 1 ? cents = price[1].toString() + '0' : cents = price[1]
+            } else {
+                cents = '00'
+            }
+
+            productsHtml += `
+            <div class="product-card flex-column" data-id="${product._id}" data-pressed="false">
+                    <p class="product-name">${product.name}</p>
+                    <p class="product-price"><span>R$</span>${price[0]},<span>${cents}</span></p>
+                </div>
+            `  
+        })
+        
+        this.$productsWrapper.innerHTML = productsHtml
+
+        console.log(productsHtml)
     },
 
     bindProductCardPressed: function() {
-
+        
     },
 
     list: async function(cuid) {
@@ -240,7 +262,6 @@ const Products = {
     products: [],
 
     init: async function() {
-        await this.list()
         this.cacheElements()
     },
 
@@ -257,3 +278,5 @@ const Products = {
 Customer.init()
 Orders.init()
 Products.init()
+
+export { Orders, Products, Customer }

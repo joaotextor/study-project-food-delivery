@@ -1,3 +1,5 @@
+import { Orders, Products, Customer } from "./index.js"
+
 function removeCSSClass(element, className) {
     element.classList.remove(className)
 }
@@ -25,16 +27,31 @@ function bindModal(name, btnOpen, btnClose) {
         event.target == modal ? modal.style.display = "none" : null
     }
 
-    modalExecute(modal)
+    const func = modalExecute[`${modal.id}`]
+    try { func() } catch { }
 
     return modal
 }
 
-function modalExecute(modalName) { 
-        switch (modalName.id) {
-            case 'order-modal':
-                console.log(`${modalName.id} loaded`)
+const modalExecute = {
+    "order-modal": function() {
+        try { 
+            Orders.populateProductWrapper()
+            
+
+        } catch (e) {
+             console.log(e) 
         }
+    },
 }
+
+
+
+// function modalExecute(modalName) { 
+//         switch (modalName.id) {
+//             case 'order-modal':
+//                 console.log(`${modalName.id} loaded`)
+//         }
+// }
 
 export { removeCSSClass, addCSSClass, bindModal }

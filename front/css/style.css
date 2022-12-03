@@ -42,6 +42,7 @@
 
 #products-wrapper {
     gap: .5rem;
+    flex-wrap: wrap;
 }
 
 footer {

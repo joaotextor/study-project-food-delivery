@@ -125,10 +125,32 @@ table ul li {
 
 .product-card {
     background: linear-gradient(137deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+    height: 75px;
+    width: 110px;
     border-radius: 10px;
     border-width: 5px;
     border-style: hidden;
     padding: 1rem;
+    justify-content: space-between;
+}
+
+.product-card .product-name {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.product-card .product-price {
+    font-size: 1.2rem;
+}
+
+.product-card .product-price span:first-child {
+    font-weight: bold;
+}
+
+.product-card .product-price  span:last-child {
+    position: absolute;
+    margin-top: .5rem;
+    font-size: .8rem;
 }
 
 .product-card[data-pressed="true"] {
