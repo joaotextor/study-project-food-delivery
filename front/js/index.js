@@ -17,7 +17,6 @@ const Orders = {
         this.$orderList = document.querySelector('.order-items')
         this.$btnReload = document.getElementById('btn-reload')
         this.$btnConfirmOrder = document.querySelector('.btn-confirm-order')
-        this.$btnProductCard = document.querySelectorAll('.product-card')
         this.$productsWrapper = document.querySelector('#products-wrapper')
         this.$modal = bindModal("order-modal","btn-order-insert", "btn-close")
     },
@@ -67,12 +66,13 @@ const Orders = {
         })
         
         this.$productsWrapper.innerHTML = productsHtml
-
-        console.log(productsHtml)
     },
 
     bindProductCardPressed: function() {
-        
+        this.$btnProductCard = document.querySelectorAll('.product-card')
+        this.$btnProductCard.forEach(productCard => {
+            productCard.onclick = this.Events.productCard_onclick
+        })
     },
 
     list: async function(cuid) {
@@ -131,6 +131,14 @@ const Orders = {
         btnReload_click: function() {
             Orders.$orderList.innerHTML = ''
             Orders.list(Main.loggedCustomer[0]._id)
+        },
+
+        productCard_onclick: function() {
+            if (this.dataset.pressed == 'true') {
+                this.dataset.pressed = false
+            } else {
+                this.dataset.pressed = true
+            }
         },
 
         btnRegister_click: function() {

@@ -34,10 +34,10 @@ function bindModal(name, btnOpen, btnClose) {
 }
 
 const modalExecute = {
-    "order-modal": function() {
+    "order-modal": async function() {
         try { 
-            Orders.populateProductWrapper()
-            
+            await Orders.populateProductWrapper()
+            Orders.bindProductCardPressed()
 
         } catch (e) {
              console.log(e) 
