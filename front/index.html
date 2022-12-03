@@ -12,12 +12,21 @@
             <div id="order-modal" class="modal">
                 <div class="modal-content">
                     <span id="btn-close" class="close">&times;</span>
-                    <p>Some text in the Modal..</p>
-                    <p>Some text in the Modal..</p>
-                    <p>Some text in the Modal..</p>
-                    <p>Some text in the Modal..</p>
-                    <p>Some text in the Modal..</p>
-                  </div>
+                    
+                    <div id="products-wrapper" class="flex">
+                        <div class="product-card flex-column" data-id="PRODUCT_ID" data-pressed="true">
+                            <p class="product-name">Produto</p>
+                            <p class="product-price"><span>R$</span>55,<span>90</span></p>
+                        </div>
+                        <div class="product-card flex-column" data-id="PRODUCT_ID" data-pressed="false">
+                            <p class="product-name">Produto</p>
+                            <p class="product-price"><span>R$</span>55,<span>90</span></p>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <button class="btn-default btn-confirm-order">Registrar</button>
+                    </div>
+                </div>
             </div>
 
             <div id="login-window" class="default-wrapper ">

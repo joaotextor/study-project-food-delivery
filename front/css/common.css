@@ -1,0 +1,23 @@
+@import 'style.css';
+
+:root  {
+    --bg-white: 0 0% 100%;
+    font-size: 16px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Solway', serif;
+}
+
+body {
+    min-height: 100vh;
+    padding-top: 2rem;
+    background: rgb(131,58,180);
+    background: linear-gradient(137deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+}
