@@ -12,7 +12,7 @@ const Orders = {
     },
 
     cacheElements: function() {
-        this.$welcome = document.getElementById('bem-vindo')
+        this.$welcome = document.getElementById('welcome')
         this.$orderWindow = document.getElementById('order-window')
         this.$orderList = document.querySelector('.order-items')
         this.$btnReload = document.getElementById('btn-reload')
@@ -79,7 +79,7 @@ const Orders = {
     list: async function(cuid) {
         const orderList = await this.getByCuid(cuid)
         
-        orderList.forEach(order => {
+        orderList.slice().reverse().forEach(order => {
 
             let orderProducts = ''
             order.products.forEach(product => {
@@ -119,12 +119,9 @@ const Orders = {
     },
 
     new: async function(id) {
-            // TODO: 1. querySelectorALl in product-card 
-            // TODO: 2. Loop product-cards, if data-pressed true, extract data-id and push to an array
-            // TODO: 3. post API orders with array of products
             const customerID = Main.loggedCustomer[0]._id
             let products = []
-            const creationDate = new Date().toLocaleDateString('en-GB')
+            const creationDate = new Date()
             this.$btnProductCard.forEach(productCard => {
                 if (productCard.dataset.pressed == 'true') {
                     products.push(productCard.dataset.id)

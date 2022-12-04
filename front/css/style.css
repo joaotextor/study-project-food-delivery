@@ -9,9 +9,19 @@
     margin-inline: auto;
 }
 
+#welcome {
+    text-align: center;
+    font-size: 1.4rem;
+    margin-top: 0;
+}
+
 .btn-wrapper {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 2rem;
-    justify-content: space-around;
+    gap: .5rem;
+    align-items: center;
+    
 }
 
 .form-submit div > label {
@@ -72,5 +82,11 @@ footer div a:any-link {
         border-radius: 10px;
         padding: .4rem;
         background-color: transparent;
+    }
+
+    .btn-wrapper {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: inherit;
     }
 }
