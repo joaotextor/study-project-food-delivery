@@ -32,18 +32,6 @@ const Orders = {
             .then(response => { return response.json()})        
     },
 
-    bindBtnRemoveOnClick: async function() {
-        this.$btnRemove.forEach(button => {
-            button.onclick = async function(e) {
-                e.preventDefault()
-                const id = this.dataset.id
-                await Orders.remove(id)
-                Orders.$orderList.innerHTML = ''
-                Orders.list(Main.loggedCustomer[0]._id)
-            }
-        })
-    },
-
     populateProductWrapper: async function() {
         await Products.list()
         let productsHtml = ''
@@ -78,15 +66,20 @@ const Orders = {
 
     list: async function(cuid) {
         const orderList = await this.getByCuid(cuid)
-        
-        orderList.slice().reverse().forEach(order => {
 
-            let orderProducts = ''
-            order.products.forEach(product => {
-                orderProducts += `<li>${product}</li>`
-            })
 
-            this.$orderList.innerHTML += `
+        orderList.slice().reverse().forEach(async order => {
+            let productsHtml = ''
+
+
+            //tried 'order.products.forEach' and 'order.produts.map' but didn't work because it was executing the rest of the code while "fetch" was being executed. Therefore, productsHtml was returning empty.
+            for (let i = 0; i < order.products.length; i++) {
+                await fetch(`${API_URL}/products/${order.products[i]}`)
+                    .then(response => {return response.json()})
+                    .then(product => {productsHtml += `<li>${product[0].name}</li>`})
+            }
+
+            Orders.$orderList.innerHTML += `
             <table>
             <tr>
                 <th>Pedido em</th>
@@ -96,7 +89,7 @@ const Orders = {
             <tr>
                 <td>${new Date(order.creationDate).toLocaleDateString('en-GB')}</td>
                 <td>${order.status}</td>
-                <td rowspan="3"><a class="btn-remove" href="#" data-id="${order._id}">Cancelar</a></td>
+                <td rowspan="3"><button id="btn-${order._id}" class="btn-remove" data-id="${order._id}">Cancelar</button></td>
             </tr>
             <tr>
                 <th colspan="2">Produtos</th>
@@ -104,18 +97,21 @@ const Orders = {
             <tr>
                 <td colspan="2">
                     <ul>
-                        ${orderProducts}
+                        ${productsHtml}
                     </ul>
                 </td>
             </tr>
             </table>
             `
 
+            let $btnRemove = ''
+            $btnRemove = document.getElementById(`btn-${order._id}`)
+            console.log(`button: ${$btnRemove.id}`)
+            
+            $btnRemove.onclick = () => Orders.Events.btnRemove_click(order._id)
+            console.log(`button ${order._id}: ${$btnRemove.onclick}`)
         })
 
-        this.$btnRemove = document.querySelectorAll('.btn-remove')
-        this.bindBtnRemoveOnClick()
-        
     },
 
     new: async function(id) {
@@ -176,7 +172,14 @@ const Orders = {
 
         btnRegister_click: function() {
             this.new()
-        }
+        },
+
+        btnRemove_click: async function(id) {
+            console.log(`Apagando ${id}`)
+            await Orders.remove(id)
+            Orders.$orderList.innerHTML = ''
+            Orders.list(Main.loggedCustomer[0]._id)
+        },
     }
 }
 

@@ -45,13 +45,4 @@ const modalExecute = {
     },
 }
 
-
-
-// function modalExecute(modalName) { 
-//         switch (modalName.id) {
-//             case 'order-modal':
-//                 console.log(`${modalName.id} loaded`)
-//         }
-// }
-
 export { removeCSSClass, addCSSClass, bindModal }
