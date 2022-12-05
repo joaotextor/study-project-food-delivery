@@ -79,7 +79,8 @@ const Orders = {
                     .then(product => {productsHtml += `<li>${product[0].name}</li>`})
             }
 
-            Orders.$orderList.innerHTML += `
+            Orders.$orderList.insertAdjacentHTML('beforeend',
+            `
             <table>
             <tr>
                 <th>Pedido em</th>
@@ -102,7 +103,7 @@ const Orders = {
                 </td>
             </tr>
             </table>
-            `
+            `)
 
             let $btnRemove = ''
             $btnRemove = document.getElementById(`btn-${order._id}`)
