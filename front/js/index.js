@@ -107,10 +107,8 @@ const Orders = {
 
             let $btnRemove = ''
             $btnRemove = document.getElementById(`btn-${order._id}`)
-            console.log(`button: ${$btnRemove.id}`)
             
             $btnRemove.onclick = () => Orders.Events.btnRemove_click(order._id)
-            console.log(`button ${order._id}: ${$btnRemove.onclick}`)
         })
 
     },
@@ -176,7 +174,6 @@ const Orders = {
         },
 
         btnRemove_click: async function(id) {
-            console.log(`Apagando ${id}`)
             await Orders.remove(id)
             Orders.$orderList.innerHTML = ''
             Orders.list(Main.loggedCustomer[0]._id)
