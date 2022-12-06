@@ -1,4 +1,5 @@
 import { API_URL } from './utils.js'
+import { removeCSSClass, addCSSClass, bindModal } from './common.js'
 
 const Customers = {
     customers: [],
@@ -11,6 +12,7 @@ const Customers = {
 
     cacheElements: function() {
         this.$customerInfo = document.getElementById('customer-info')
+        this.$addCustomerModal = bindModal("add-customer-modal","btn-add-customer", "btn-close")
     },
 
     bindEvents: function() {
@@ -67,7 +69,9 @@ const Customers = {
     },
 
     Events: {
+        btnOpenModal_click: function() {
 
+        }
     }
 }
 
