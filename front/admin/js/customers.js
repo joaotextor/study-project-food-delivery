@@ -12,7 +12,7 @@ const Customers = {
 
     cacheElements: function() {
         this.$customerInfo = document.getElementById('customer-info')
-        this.$addCustomerModal = bindModal("add-customer-modal","btn-add-customer", "btn-close")
+        this.$addCustomerModal = bindModal("add-customer-modal","btn-add-customer-modal", "btn-close")
     },
 
     bindEvents: function() {
