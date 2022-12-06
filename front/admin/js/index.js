@@ -1,5 +1,3 @@
-import { API_URL } from './utils.js'
-
 const Main = {
     init: function() {
         this.cacheElements()

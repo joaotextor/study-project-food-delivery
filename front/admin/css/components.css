@@ -1,7 +1,7 @@
-@import 'style.css';
+@import 'index.css';
 
 .container {
-    margin-top: auto;
+    margin-block: auto;
 }
 
 .modal {

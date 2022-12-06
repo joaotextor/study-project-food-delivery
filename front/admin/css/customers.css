@@ -18,6 +18,11 @@ table {
     border: 0;
 }
 
+table a {
+    height: inherit;
+    cursor: pointer;
+}
+
 table > tr {
     height: 2rem;
 }
