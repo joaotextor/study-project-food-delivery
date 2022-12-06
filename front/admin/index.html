@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/index.css" rel="stylesheet">
+        <script src="js/index.js" type="module" defer></script>
+    </head>
+    <body class="flex-column">
+        <div class="container flex-column">
+
+            <div id="login-window" class="default-wrapper hidden">
+                <h2>Admin Login</h2>
+                <p id="lbl-error" class="hidden">Usuário ou senha incorretos!</p>
+                <form action="" class="form-submit flex-column">
+                    <div>
+                        <label>Usuário:
+                            <input type="text" id="username" name="username">
+                        </label>
+                    </div>
+                    <div>
+                        <label>E-mail:
+                            <input type="password" id="password" name="password">
+                        </label>
+                    </div>
+                    <button id="btn-login" class="btn-default">Entrar</button>
+                </form>
+            </div>
+
+            <div id="index-window" class="default-wrapper flex-column">
+                <h3 class="welcome">Bem vindo ao painel de administrador</h3>
+
+                <div class="btn-wrapper">
+
+                    <a href="orders.html">
+                    <button id="goto-orders" class="btn-default">Pedidos</button></a>
+
+                    <a href="products.html"><button id="goto-products" class="btn-default">Produtos</button></a>
+
+                    <a href="customers.html"><button id="goto-customers" class="btn-default">Clientes</button></a>
+                </div>
+                <div class="order-items flex-column">
+                </div>
+            </div>
+        </div>  
+        <footer class="flex">
+            <div>
+                <a href="../index.html">[Customer Panel]</a>
+            </div>
+        </footer> 
+    </body>
+    </html>
