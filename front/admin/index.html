@@ -10,7 +10,7 @@
     <body class="flex-column">
         <div class="container flex-column">
 
-            <div id="login-window" class="default-wrapper hidden">
+            <div id="login-window" class="default-wrapper">
                 <h2>Admin Login</h2>
                 <p id="lbl-error" class="hidden">Usuário ou senha incorretos!</p>
                 <form action="" class="form-submit flex-column">
@@ -28,21 +28,18 @@
                 </form>
             </div>
 
-            <div id="index-window" class="default-wrapper flex-column">
+            <main id="index-window" class="default-wrapper flex-column hidden">
                 <h3 class="welcome">Bem vindo ao painel de administrador</h3>
 
-                <div class="btn-wrapper">
-
+                <nav class="btn-wrapper">
                     <a href="orders.html">
                     <button id="goto-orders" class="btn-default">Pedidos</button></a>
 
                     <a href="products.html"><button id="goto-products" class="btn-default">Produtos</button></a>
 
                     <a href="customers.html"><button id="goto-customers" class="btn-default">Clientes</button></a>
-                </div>
-                <div class="order-items flex-column">
-                </div>
-            </div>
+                </nav>
+            </main>
         </div>  
         <footer class="flex">
             <div>

@@ -37,3 +37,5 @@ const Main = {
 }
 
 Main.init()
+
+export { Main }

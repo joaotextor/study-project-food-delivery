@@ -1,7 +1,7 @@
-@import 'index.css';
+@import 'style.css';
 
 .container {
-    margin-block: auto;
+    margin-top: auto;
 }
 
 .modal {
@@ -74,6 +74,21 @@ cursor: pointer;
     border-radius: 20px;
     cursor: pointer;
     transition: color 300ms ease, border-color 300ms ease;
+}
+
+.btn-pressed {
+    border-color: white;
+    background: rgb(0, 0, 0, .5);
+    color: white;
+}
+
+.btn-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    gap: .5rem;
+    align-items: center;
+    
 }
 
 .btn-default:hover {
@@ -197,6 +212,15 @@ table ul li {
 
     .product-card .product-price span {
         font-size: .9rem;
+    }
+
+    .btn-wrapper {
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+        gap: .5rem;
+        justify-content: space-around;
+        
     }
 
 }
