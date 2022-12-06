@@ -120,8 +120,7 @@ const Orders = {
             this.$btnProductCard.forEach(productCard => {
                 if (productCard.dataset.pressed == 'true') {
                     products.push(productCard.dataset.id)
-                }
-                
+                } 
             })
 
             await fetch(`${API_URL}/orders`, {
@@ -147,6 +146,9 @@ const Orders = {
                 })
             })
 
+            this.$btnProductCard.forEach(productCard => {
+                productCard.dataset.pressed = 'false'
+            })
     },
 
     remove: async function(id) {
