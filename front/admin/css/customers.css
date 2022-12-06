@@ -1,0 +1,27 @@
+@import 'index.css';
+@import 'noindex.css';
+
+hr {
+    margin-block: 1rem;
+    background: black;
+}
+
+article .btn-default {
+    margin-top: 0;
+}
+
+article .btn-wrapper {
+    margin-bottom: 1rem;
+}
+
+table {
+    border: 0;
+}
+
+table > tr {
+    height: 2rem;
+}
+
+table td img {
+    width: 25px;
+}

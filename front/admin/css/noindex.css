@@ -1,0 +1,15 @@
+body {
+    justify-content: space-between;
+}
+
+.container {
+    margin-top: 2rem;
+}
+
+.default-wrapper {
+    padding: 1rem;
+}
+
+.btn-wrapper {
+    margin-bottom: 0;
+}
