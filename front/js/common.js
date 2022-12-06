@@ -1,4 +1,4 @@
-import { Orders, Products, Customer } from "./index.js"
+import { Orders } from "./index.js"
 
 function removeCSSClass(element, className) {
     element.classList.remove(className)
