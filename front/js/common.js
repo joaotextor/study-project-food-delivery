@@ -14,17 +14,20 @@ function bindModal(name, btnOpen, btnClose) {
     const close = document.getElementById(btnClose)
 
     open.onclick = () => {
-        modal.classList.add('d-block')
-        modal.classList.remove('hidden')
+        addCSSClass(modal, 'd-block')
+        removeCSSClass(modal, 'hidden')
     }
 
     close.onclick = () => {
-        modal.classList.add('hidden')
-        modal.classList.remove('d-block')
+        addCSSClass(modal, 'hidden')
+        removeCSSClass(modal, 'd-block')
     }
 
     window.onclick = (event) => {
-        event.target == modal ? modal.style.display = "none" : null
+        if (event.target == modal) {
+            addCSSClass(modal, 'hidden')
+            removeCSSClass(modal, 'd-block')
+        }
     }
 
     const func = modalExecute[`${modal.id}`]
