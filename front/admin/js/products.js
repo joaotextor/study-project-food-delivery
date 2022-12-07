@@ -44,6 +44,7 @@ const Products = {
         })
     },
 
+
     new: async function() {
         await fetch(`${API_URL}/products/`, {
             method: 'POST',
