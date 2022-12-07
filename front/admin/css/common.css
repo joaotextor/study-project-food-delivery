@@ -3,7 +3,7 @@
 :root  {
     --bg-white: 0 0% 100%;
     font-size: 16px;
-}
+} 
 
 * {
     padding: 0;
@@ -22,3 +22,56 @@ body {
     align-items: center;
 }
 
+hr {
+    margin-block: 1rem;
+    background: black;
+}
+
+article .btn-default {
+    margin-top: 0;
+}
+
+article .btn-wrapper {
+    margin-bottom: 1rem;
+}
+
+table {
+    border: 0;
+}
+
+table a {
+    height: inherit;
+    cursor: pointer;
+}
+
+table > tr {
+    height: 2rem;
+}
+
+table td img {
+    width: 25px;
+}
+
+.form-add {
+    margin-left: 0;
+    width: 95%;
+}
+
+.form-add div {
+    margin-bottom: 1rem;
+}
+
+.form-add div > label input {
+    margin-bottom: 0rem;
+}
+
+.form-add div > label input:focus {
+    outline: none;
+    border:2px solid rgb(255, 0, 98);
+    color: rgb(255, 0, 98)
+}
+
+.modal-content div {
+    width: 100%;
+    justify-content: center;    
+}
