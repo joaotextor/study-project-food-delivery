@@ -101,7 +101,7 @@ const Customers = {
 
     Events: {
         btnAddCustomer_click: function() {
-            Customers.new()
+            isNaN(this.$edtPhone.value) ? alert(`Phone must contain only numbers.`) : Customers.new()
         }
     }
 }
