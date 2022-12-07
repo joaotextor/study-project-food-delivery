@@ -71,8 +71,6 @@ const Orders = {
         orderList.slice().reverse().forEach(async order => {
             let productsHtml = ''
 
-
-            //tried 'order.products.forEach' and 'order.produts.map' but didn't work because it was executing the rest of the code while "fetch" was being executed. Therefore, productsHtml was returning empty.
             for (let i = 0; i < order.products.length; i++) {
                 await fetch(`${API_URL}/products/${order.products[i]}`)
                     .then(response => {return response.json()})

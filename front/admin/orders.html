@@ -4,9 +4,61 @@
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/style.css" rel="stylesheet">
+        <link href="css/orders.css" rel="stylesheet">
+        <script src="js/orders.js" type="module" defer></script>
     </head>
-    <body>
-    
+    <body class="flex-column">
+        <div class="container flex-column">
+
+            <div id="add-order-modal" class="modal hidden">
+                <div class="modal-content">
+                    <span id="btn-close" class="close">&times;</span>
+                    
+                    <form id="form-insert-order" class="form-submit form-add">
+                        <div>
+                            <label>Nome:
+                                <input id="edt-name" type="text">
+                            </label>
+                        </div>
+                        <div>
+                            <label>Preço:
+                                <input id="edt-price" type="text">
+                            </label>
+                        </div>                        
+                    </form>
+                    <div class="flex">
+                        <button id="btn-add-order" class="btn-default btn-default-bgwhite">Inserir</button>
+                    </div>
+                </div>
+            </div>
+
+            <main class="default-wrapper flex-column">
+                <h3 class="welcome">Bem vindo ao painel de administrador</h3>
+
+                <nav class="btn-wrapper">
+                    <a href="orders.html">
+                    <button id="goto-orders" class="btn-default  btn-pressed">Pedidos</button></a>
+
+                    <a href="products.html"><button id="goto-products" class="btn-default">Produtos</button></a>
+
+                    <a href="customers.html"><button id="goto-customers" class="btn-default">Clientes</button></a>
+                </nav>
+                <hr>
+                <article>
+                    <div class="btn-wrapper">
+                        <button id="btn-add-order-modal" class="btn-default">Cadastrar Novo</button>
+                    </div>
+                    <table id="order-info">
+
+                    </table>
+                </article>
+
+            </main>
+        </div>  
+        <footer class="flex">
+            <div>
+                <a href="../index.html">[Customer Panel]</a>
+            </div>
+        </footer> 
     </body>
-</html>
+    </html>
