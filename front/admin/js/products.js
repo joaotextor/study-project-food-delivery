@@ -15,6 +15,8 @@ const Products = {
         this.$addProductsModal = bindModal("add-product-modal","btn-add-product-modal", "btn-close")
         this.$btnAddProduct = document.getElementById('btn-add-product')
         this.$insertForm = document.getElementById('form-insert-product')
+        this.$edtName = document.getElementById('edt-name')
+        this.$edtPrice = document.getElementById('edt-price')
     },
 
     bindEvents: function() {
@@ -49,16 +51,14 @@ const Products = {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                //! name: this.$edtName.value,
-                //! email: this.$edtEmail.value,
-                //! phone: this.$edtPhone.value,
-                //! address: this.$edtAddress.value
+                name: this.$edtName.value,
+                price: this.$edtPrice.value,
             })
         }).then(response => { 
                 response.json().then(data => {
                     if (data.message === 'success') {
-                        addCSSClass(this.$addProductModal, 'hidden')
-                        removeCSSClass(this.$addProductModal, 'd-block')
+                        addCSSClass(this.$addProductsModal, 'hidden')
+                        removeCSSClass(this.$addProductsModal, 'd-block')
                         this.$insertForm.reset()
                         Products.get()
                     }
