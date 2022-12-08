@@ -53,7 +53,7 @@ const Products = {
             },
             body: JSON.stringify({
                 name: this.$edtName.value,
-                price: this.$edtPrice.value,
+                price: this.$edtPrice.value.replace(",", "."),
             })
         }).then(response => { 
                 response.json().then(data => {
@@ -76,10 +76,20 @@ const Products = {
         </tr>
         `
         this.products.slice().reverse().forEach(product => {
+
+            const price = product.price.toString().split('.')
+            let cents = ''
+
+            if (price[1]) { 
+                price[1].length === 1 ? cents = price[1].toString() + '0' : cents = price[1]
+            } else {
+                cents = '00'
+            }
+
             productsHtml += `
             <tr height="40px">
                 <td>${product.name}</td>
-                <td>${product.price}</td>
+                <td>R$ ${price[0]},${cents}</td>
                 <td>
                     <a href="#" data-id="${product._id}" class="btn-remove-product">    
                         <img src="./images/delete-icon.svg" alt="delete">
@@ -94,7 +104,8 @@ const Products = {
 
     Events: {
         btnAddProduct_click: function() {
-            isNaN(this.$edtPrice.value) ? alert(`Price must contain only numbers.`) : Products.new()
+            let newPrice = this.$edtPrice.value.replace(",", ".")
+            isNaN(newPrice) ? alert(`O campo preço deve conter apenas números.`) : Products.new()
         }
     }
 }

@@ -12,18 +12,10 @@ const Customers = {
 
     cacheElements: function() {
         this.$customerInfo = document.getElementById('customer-info')
-        this.$addCustomerModal = bindModal("add-customer-modal","btn-add-customer-modal", "btn-close")
-        this.$edtName = document.getElementById('edt-name')
-        this.$edtAddress = document.getElementById('edt-address')
-        this.$edtEmail = document.getElementById('edt-email')
-        this.$edtPhone = document.getElementById('edt-phone')
-        this.$btnAddCustomer = document.getElementById('btn-add-customer')
-        this.$insertForm = document.getElementById('form-insert-customer')
     },
 
     bindEvents: function() {
         const self = this
-        this.$btnAddCustomer.onclick = this.Events.btnAddCustomer_click.bind(self)
     },
 
     get: async function() {
@@ -44,30 +36,6 @@ const Customers = {
         this.$customers.forEach(customer => {
             customer.onclick = () => this.remove(customer.dataset.id)
         })
-    },
-
-    new: async function() {
-        await fetch(`${API_URL}/customers/`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                name: this.$edtName.value,
-                email: this.$edtEmail.value,
-                phone: this.$edtPhone.value,
-                address: this.$edtAddress.value
-            })
-        }).then(response => { 
-                response.json().then(data => {
-                    if (data.message === 'success') {
-                        addCSSClass(this.$addCustomerModal, 'hidden')
-                        removeCSSClass(this.$addCustomerModal, 'd-block')
-                        this.$insertForm.reset()
-                        Customers.get()
-                    }
-                }) 
-            })
     },
 
     list: function() {
@@ -100,9 +68,7 @@ const Customers = {
     },
 
     Events: {
-        btnAddCustomer_click: function() {
-            isNaN(this.$edtPhone.value) ? alert(`Phone must contain only numbers.`) : Customers.new()
-        }
+
     }
 }
 

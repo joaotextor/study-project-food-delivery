@@ -37,6 +37,7 @@ article .btn-wrapper {
 
 table {
     border: 0;
+    border-collapse: collapse;
 }
 
 table a {
@@ -44,8 +45,12 @@ table a {
     cursor: pointer;
 }
 
-table > tr {
+table > tbody > tr {
     height: 2rem;
+}
+
+table tbody tr > td {
+    border-bottom: 1px solid black;
 }
 
 table td img {

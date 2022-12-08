@@ -12,14 +12,10 @@ const Orders = {
 
     cacheElements: function() {
         this.$orderInfo = document.getElementById('order-info')
-        this.$addOrdersModal = bindModal("add-order-modal","btn-add-order-modal", "btn-close")
-        this.$btnAddOrder = document.getElementById('btn-add-order')
-        this.$insertForm = document.getElementById('form-insert-order')
     },
 
     bindEvents: function() {
         const self = this
-        this.$btnAddOrder.onclick = this.Events.btnAddOrder_click.bind(self)
     },
 
     get: async function() {
@@ -42,28 +38,6 @@ const Orders = {
         })
     },
 
-    new: async function() {
-        await fetch(`${API_URL}/products/`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                name: this.$edtName.value,
-                price: this.$edtPrice.value,
-            })
-        }).then(response => { 
-                response.json().then(data => {
-                    if (data.message === 'success') {
-                        addCSSClass(this.$addProductsModal, 'hidden')
-                        removeCSSClass(this.$addProductsModal, 'd-block')
-                        this.$insertForm.reset()
-                        Products.get()
-                    }
-                }) 
-            })
-    },
-
     list: function() {
         let ordersHtml = `
         <tr>
@@ -77,7 +51,6 @@ const Orders = {
 
         this.orders.slice().reverse().forEach(async order => {
             let productsHtml = ''
-            
             
             let customerName = await fetch(`${API_URL}/customers/${order.customerID}`)
                 .then(response => { return response.json()})
@@ -116,9 +89,6 @@ const Orders = {
     },
 
     Events: {
-        btnAddOrder_click: function() {
-            // Orders.new()
-        }
     }
 }
 

@@ -195,8 +195,6 @@ const Customer = {
         this.$phone = document.getElementById('phone')
         this.$address = document.getElementById('address')
         this.$btnSubmit = document.querySelector('#btn-submit')
-
-        
     },
 
     bindEvents: function() {
@@ -265,6 +263,10 @@ const Customer = {
             removeCSSClass(this.$name, 'error')
             removeCSSClass(this.$email.parentElement, 'error')
             removeCSSClass(this.$email, 'error')
+            removeCSSClass(this.$phone.parentElement, 'error')
+            removeCSSClass(this.$phone, 'error')
+            removeCSSClass(this.$address.parentElement, 'error')
+            removeCSSClass(this.$address, 'error')
 
             if (!this.$name.value) {
                 this.$name.parentElement.classList.add('error')
@@ -278,8 +280,31 @@ const Customer = {
                 error = 1
             }
 
+            if (!this.$phone.value) {
+                addCSSClass(this.$phone.parentElement, 'error')
+                addCSSClass(this.$phone, 'error')
+                error = 1
+            }
+
+            if (isNaN(this.$phone.value)) {
+                addCSSClass(this.$phone.parentElement, 'error')
+                addCSSClass(this.$phone, 'error')
+                error = 2
+            }
+
+            if (!this.$address.value) {
+                addCSSClass(this.$address.parentElement, 'error')
+                addCSSClass(this.$address, 'error')
+                error = 1
+            }
+
             if (error != 0) {
                 alert('Por favor, corrija os campos em destaque.') 
+
+                if (error === 2) {
+                    alert('O campo de telefone aceita apenas números.')
+                }
+
                 return
             }
             
