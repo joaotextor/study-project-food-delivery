@@ -11,6 +11,7 @@ This is a solution to the [Backend Job Offer Exam](https://github.com/thiagocont
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
+- [How to access the Live Preview](#how-to-access-the-live-preview)
 - [Author](#author)
 
 ## Overview
@@ -47,6 +48,14 @@ The Order might have the `status`: `pending`, `preparing`, `delivering`, `delive
 - Node.js
 - MongoDB
 
+### How to access the Live Preview
+
+* Install Node.js
+* Install MongoDB
+* Install mongoose, express and nodemon.
+* Run "npm run dev" in command prompt.
+* In browser, access the localhost
+
 ## Author
 
 - Github - [João Textor](https://github.com/joaotextor)
@@ -66,6 +75,7 @@ Essa é a solução do [Teste de Vaga de Emprego Backend](https://github.com/thi
   - [Links](#linkspt)
 - [Meu processo](#meu-processo)
   - [Desenvolvido com](#desenvolvido-com)
+- [Como acessar o Live Preview](#como-acessar-o-live-preview)
 - [Autor](#autor)
 
 ## Visão geral
@@ -102,6 +112,15 @@ O **Pedido** poderá conter os `status`: `Pendente`, `Em preparo`, `Em entrega`,
 - CSS Grid
 - Node.js
 - MongoDB
+
+
+### Como acessar o Live Preview
+
+* Instale o Node.js
+* Instale o MongoDB
+* Instale o mongoose, express and nodemon.
+* Rode o programa com "npm run dev" no prompt de comando.
+* No navegador, acesse o localhost na porta 8080.
 
 ## Autor
 
