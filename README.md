@@ -58,9 +58,10 @@ The Order might have the `status`: `pending`, `preparing`, `delivering`, `delive
 
 ## Author
 
-- Github - [João Textor](https://github.com/joaotextor)
+- [Github](https://github.com/joaotextor)
+- [Linkedin](https://www.linkedin.com/in/joaotextor)
 - Frontend Mentor - [@joaotextor](https://www.frontendmentor.io/profile/joaotextor)
-- Twitter - [@yourusername](https://www.twitter.com/joaotextor90)
+- Twitter - [@joaotextor90](https://www.twitter.com/joaotextor90)
 
 # <a id="portuguese"></a>Projeto de Estudo - Gerenciamento de Pedidos de lanchonete
 
