@@ -125,6 +125,7 @@ O **Pedido** poderá conter os `status`: `Pendente`, `Em preparo`, `Em entrega`,
 
 ## Autor
 
-- Github - [João Textor](https://github.com/joaotextor)
+- [Github](https://github.com/joaotextor)
+- [Linkedin](https://www.linkedin.com/in/joaotextor)
 - Frontend Mentor - [@joaotextor](https://www.frontendmentor.io/profile/joaotextor)
-- Twitter - [@yourusername](https://www.twitter.com/joaotextor90)
+- Twitter - [@joaotextor90](https://www.twitter.com/joaotextor90)
