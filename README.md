@@ -18,7 +18,7 @@ This is a solution to the [Backend Job Offer Exam](https://github.com/thiagocont
 
 ### The challenge
 
-In this challenge, the developr should be able to develop an RESTFul API to create orders in a restaurant, with a admin control panel to insert products and manage orders.
+In this challenge, the developer should be able to develop an RESTFul API to create orders in a restaurant, with a admin control panel to insert products and manage orders.
 
 The system should contemplate modules for **Customers**, **Products** and **Orders**. An **Order** belongs to a **Customer** and it can have multiple **Products**.
 
