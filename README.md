@@ -52,8 +52,8 @@ The Order might have the `status`: `pending`, `preparing`, `delivering`, `delive
 
 * Install Node.js
 * Install MongoDB
-* Install mongoose, express and nodemon.
-* Run "npm run dev" in command prompt.
+* Run ```npm i```
+* Run ```npm run dev``` in command prompt.
 * In browser, access the localhost
 
 ## Author
@@ -119,8 +119,8 @@ O **Pedido** poderá conter os `status`: `Pendente`, `Em preparo`, `Em entrega`,
 
 * Instale o Node.js
 * Instale o MongoDB
-* Instale o mongoose, express and nodemon.
-* Rode o programa com "npm run dev" no prompt de comando.
+* Execute ```npm i``` no terminal
+* Execute o programa com ```npm run dev``` no prompt de comando.
 * No navegador, acesse o localhost na porta 8080.
 
 ## Autor
