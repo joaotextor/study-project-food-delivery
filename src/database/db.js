@@ -1,7 +1,10 @@
 const mongoose = require('mongoose')
+require('dotenv').config()
 
 const connect = () => {
-    mongoose.connect('mongodb://127.0.0.1:27017/food-delivery-services')
+    const mongoDbUri = process.env.MONGODB_URI
+    console.log(mongoDbUri)
+    mongoose.connect(process.env.MONGODB_URI)
 
     const db = mongoose.connection
 
